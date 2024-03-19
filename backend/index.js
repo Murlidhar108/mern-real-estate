@@ -7,7 +7,6 @@ import dotenv from 'dotenv'
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 
-
 dotenv.config(); // initialising 
 
 mongoose.connect('mongodb://localhost:27017/real-estate').then(()=>{
@@ -16,13 +15,20 @@ mongoose.connect('mongodb://localhost:27017/real-estate').then(()=>{
     console.log(err);
 })
 
-// console.log('MongoDB URI:', process.env.MONGO);
-
 app.listen(port , () => {
     console.log('backend is running');
 })
 
-
-
 app.use('/backend/user' , userRouter);
 app.use('/backend/auth' , authRouter);
+
+// creating middleware
+app.use((err , req , res , next) => {
+    const statusCode = err.statusCode || 500
+    const message = err.message || 'Internal Server Error'
+    res.status(statusCode).json({
+        success: false ,
+        statusCode ,
+        message
+    })
+})
