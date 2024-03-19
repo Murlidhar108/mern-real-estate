@@ -6,9 +6,6 @@ const dotenv = require('dotenv')
 
 dotenv.config(); // initialising 
 
-
-// const url = process.env.MONGO;
-
 mongoose.connect('mongodb://localhost:27017/real-estate').then(()=>{
     console.log("mongo db connected");
 }).catch((err) => {
