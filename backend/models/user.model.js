@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 // first create schema , then create model
 const userSchema = new mongoose.Schema({

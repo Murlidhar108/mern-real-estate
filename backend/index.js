@@ -1,8 +1,12 @@
-const express = require('express')
+import express from 'express';
 const app = express()
+app.use(express.json());
 const port = 4000;
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
+import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
+
 
 dotenv.config(); // initialising 
 
@@ -20,6 +24,5 @@ app.listen(port , () => {
 
 
 
-
-
-
+app.use('/backend/user' , userRouter);
+app.use('/backend/auth' , authRouter);
