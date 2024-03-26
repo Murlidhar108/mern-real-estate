@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config(); // initialising 
 
@@ -14,6 +15,8 @@ mongoose.connect('mongodb://localhost:27017/real-estate').then(()=>{
 }).catch((err) => {
     console.log(err);
 })
+
+app.use(cookieParser());
 
 app.listen(port , () => {
     console.log('backend is running');
